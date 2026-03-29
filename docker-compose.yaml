@@ -4,12 +4,4 @@ services:
     container_name: notifications-service
     restart: on-failure
     network_mode: host
-    environment:
-      APP_PORT: 8084
-      MAIL_HOST: 'smtp.gmail.com'
-      MAIL_USER: 'samarkin20022002@gmail.com'
-      MAIL_PASSWORD: 'axmtoantwfwbmvmq'
-      MAIL_FROM: 'samarkin20022002@gmail.com'
-      MAIL_PORT: 465
-      RMQ_QUEUE: 'notifications-queue'
-      RMQ_URL: 'amqp://default_user:default_password@localhost:5672'
+    env_file: .env
