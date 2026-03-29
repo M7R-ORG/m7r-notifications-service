@@ -28,7 +28,7 @@ async function mailerModuleFactory(config: ConfigService) {
     transport: {
       host: address,
       port,
-      secure: port === 465,
+      secure: true,
       tls: { servername: host },
       auth: {
         user: config.get<string>('email.user'),
