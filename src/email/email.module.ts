@@ -5,6 +5,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { ConfigService } from '@nestjs/config';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { join } from 'path';
+import { lookup } from 'dns';
 
 @Module({
   controllers: [EmailController],
@@ -28,6 +29,7 @@ async function mailerModuleFactory(config: ConfigService) {
         user: config.get<string>('email.user'),
         pass: config.get<string>('email.password'),
       },
+      dnsOptions: { lookup },
     },
     defaults: {
       from: `"No Reply" <${config.get<string>('email.from')}>`,
