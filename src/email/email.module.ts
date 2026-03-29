@@ -22,6 +22,7 @@ async function mailerModuleFactory(config: ConfigService) {
   return {
     transport: {
       host: config.get<string>('email.host'),
+      port: config.get<number>('email.port'),
       secure: false,
       auth: {
         user: config.get<string>('email.user'),
