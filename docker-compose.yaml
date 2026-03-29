@@ -3,8 +3,7 @@ services:
     image: samarkinivan/notifications-service:latest
     container_name: notifications-service
     restart: on-failure
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    network_mode: host
     environment:
       APP_PORT: 8084
       MAIL_HOST: 'smtp.gmail.com'
@@ -13,6 +12,4 @@ services:
       MAIL_FROM: 'samarkin20022002@gmail.com'
       MAIL_PORT: 587
       RMQ_QUEUE: 'notifications-queue'
-      RMQ_URL: 'amqp://default_user:default_password@host.docker.internal:5672'
-    ports:
-      - '8084:8084'
+      RMQ_URL: 'amqp://default_user:default_password@localhost:5672'
