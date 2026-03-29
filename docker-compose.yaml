@@ -9,7 +9,7 @@ services:
       APP_PORT: 8084
       MAIL_HOST: 'smtp.gmail.com'
       MAIL_USER: 'samarkin20022002@gmail.com'
-      MAIL_PASSWORD: 'dasirmpudrndcqsj'
+      MAIL_PASSWORD: 'ebhyyjyqvnidrjsr'
       MAIL_FROM: 'samarkin20022002@gmail.com'
       MAIL_PORT: 587
       RMQ_QUEUE: 'notifications-queue'
