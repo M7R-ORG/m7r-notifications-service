@@ -5,6 +5,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { ConfigService } from '@nestjs/config';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { join } from 'path';
+import { promises as dns } from 'dns';
 
 @Module({
   controllers: [EmailController],
@@ -19,11 +20,16 @@ import { join } from 'path';
 export class EmailModule {}
 
 async function mailerModuleFactory(config: ConfigService) {
+  const host = config.get<string>('email.host');
+  const port = config.get<number>('email.port');
+  const { address } = await dns.lookup(host);
+
   return {
     transport: {
-      host: config.get<string>('email.host'),
-      port: config.get<number>('email.port'),
-      secure: config.get<number>('email.port') === 465,
+      host: address,
+      port,
+      secure: port === 465,
+      tls: { servername: host },
       auth: {
         user: config.get<string>('email.user'),
         pass: config.get<string>('email.password'),
