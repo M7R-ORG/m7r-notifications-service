@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [ -z "$1" ]; then
   imageName="samarkinivan/notifications-service"
 else
