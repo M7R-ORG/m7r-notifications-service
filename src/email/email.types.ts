@@ -1,6 +1,12 @@
+export type EmailContext = {
+  recipientName: string;
+  confirmationLink?: string;
+  resetPasswordLink?: string;
+};
+
 export type SendEmailTemplateArgs = {
   recipient: string;
-  context: Record<string, string>;
+  context: EmailContext;
 };
 
 export enum EmailTemplate {
